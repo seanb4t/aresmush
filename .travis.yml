@@ -8,6 +8,8 @@ rvm:
 jdk:
   - oraclejdk7
   - openjdk7
+services:
+  - mongodb
 matrix:
   exclude:
     - rvm: 1.9.2
