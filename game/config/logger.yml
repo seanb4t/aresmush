@@ -1,5 +1,5 @@
 logger:
-
+  log_dir: 'game/logs'
   # define all loggers ...
   loggers:
     - name      : ares
@@ -21,7 +21,7 @@ logger:
         name     : file
         max_backups : '5'
         maxtime : '86400'
-        filename : 'game/logs/log.txt'
+        filename : '#{log_dir}/log.txt'
         formatter:
           date_pattern: '%Y-%m-%d %H:%M:%S'
           pattern     : '%d %l - %M '
