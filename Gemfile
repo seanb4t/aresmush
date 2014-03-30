@@ -12,3 +12,9 @@ gem 'rspec', '~> 2.14.1'
 gem 'liquid', '~> 2.6.0'
 gem 'mongo_mapper', '~> 0.12.0'
 gem 'erubis', '~> 2.7.0'
+
+platforms :rbx do
+  gem 'racc'
+  gem 'rubysl', '~> 2.0'
+  gem 'psych'
+end
