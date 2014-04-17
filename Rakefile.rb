@@ -20,19 +20,22 @@ namespace :db do
     config_reader.read
     config = config_reader.config
     db_auth_enabled = ENV['ARES_DB_AUTH_DISABLED'] || 'true'
+    db_env = ENV['ARESMUSH_DB_ENV'] ||= 'production'
+    db_config = config['database'][db_env]
+    test_db_config = config['database']['test']
 
     template_data = {
       db_path: game_db_path,
-      db_host: config['database']['production']['sessions']['default']['hosts'].first.split(/:/)[0],
-      db_port: config['database']['production']['sessions']['default']['hosts'].first.split(/:/)[1],
-      db_name: config['database']['production']['sessions']['default']['database'],
-      db_username: config['database']['production']['sessions']['default']['username'],
-      db_password: config['database']['production']['sessions']['default']['password'],
-      test_db_host: config['database']['test']['sessions']['default']['hosts'].first.split(/:/)[0],
-      test_db_port: config['database']['test']['sessions']['default']['hosts'].first.split(/:/)[1],
-      test_db_name: config['database']['test']['sessions']['default']['database'],
-      test_db_username: config['database']['test']['sessions']['default']['username'],
-      test_db_password: config['database']['test']['sessions']['default']['password'],
+      db_host: db_config['sessions']['default']['hosts'].first.split(/:/)[0],
+      db_port: db_config['sessions']['default']['hosts'].first.split(/:/)[1],
+      db_name: db_config['sessions']['default']['database'],
+      db_username: db_config['sessions']['default']['username'],
+      db_password: db_config['sessions']['default']['password'],
+      test_db_host: test_db_config['sessions']['default']['hosts'].first.split(/:/)[0],
+      test_db_port: test_db_config['sessions']['default']['hosts'].first.split(/:/)[1],
+      test_db_name: test_db_config['sessions']['default']['database'],
+      test_db_username: test_db_config['sessions']['default']['username'],
+      test_db_password: test_db_config['sessions']['default']['password'],
       db_auth_enabled: db_auth_enabled
     }
 

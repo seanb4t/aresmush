@@ -14,6 +14,19 @@ database:
             # You may experiment with other options at your own discretion.
             raise_not_found_error: false
 
+    travis:
+        sessions:
+            default:
+                hosts:
+                    - localhost:27017
+                database: aresmush
+                username: ares
+                password: make_a_good_password
+        options:
+            # These options are critical for proper Ares operation.
+            # You may experiment with other options at your own discretion.
+            raise_not_found_error: false
+
     test:
         sessions:
             default:
