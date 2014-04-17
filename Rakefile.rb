@@ -60,7 +60,11 @@ namespace :db do
     task :bootstrap do
       do_not_start_stop = false
       if template_data[:db_host] == 'localhost' || template_data[:db_host] == '127.0 .0.1'
-        raise "Mongo is running" if File.exists? mongo_pid_file
+        if db_env == 'travis'
+          do_not_start_stop = true
+        else
+          raise "Mongo is running" if File.exists? mongo_pid_file
+        end
       else
         do_not_stop_start = true
       end
