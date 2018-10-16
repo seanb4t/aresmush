@@ -23,7 +23,7 @@ module AresMUSH
     end
 
     def self.get_field_from_env(field_name, default_value)
-      ENV.fetch(field_name.upcase, default_value.to_upper)
+      ENV.fetch(field_name.upcase, default_value.upcase)
     end
     
     def self.configure_game

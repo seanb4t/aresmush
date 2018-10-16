@@ -81,14 +81,16 @@ RUN chmod 0755 /docker-entrypoint.sh \
     && chown -R ares:ares /ares \
     && chmod 0770 /ares
 
-ENV ARES_GAME_GIT_URL="https://github.com/AresMUSH/aresmush.git"
-ENV ARES_GAME_BRANCH=master
-ENV ARES_GAME_DIR=/ares/aresmush
-
 USER ares
 WORKDIR /ares
 COPY --chown=ares:ares ruby-setup.sh /ares/ruby-setup.sh
 RUN /ares/ruby-setup.sh
+
+ARG ARES_GAME_GIT_URL="https://github.com/AresMUSH/aresmush.git"
+ENV ARES_GAME_GIT_URL=${ARES_GAME_GIT_URL}
+ARG ARES_GAME_BRANCH=master
+ENV ARES_GAME_BRANCH=${ARES_GAME_BRANCH}
+ENV ARES_GAME_DIR=/ares/aresmush
 
 COPY --chown=ares:ares ares-setup.sh /ares/ares-setup.sh
 
