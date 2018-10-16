@@ -31,6 +31,10 @@ task :configure do
   AresMUSH::Install.configure_game
 end
 
+task :configure_from_env do
+  AresMUSH::Install.configure_game_from_env
+end
+
 task :add_plugin, [:plugin_name] do |t, args|
   minimal_boot
   plugin_name = args[:plugin_name]

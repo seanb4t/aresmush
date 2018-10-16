@@ -21,6 +21,10 @@ module AresMUSH
       end
       input
     end
+
+    def self.get_field_from_env(field_name, default_value)
+      ENV.fetch(field_name.upcase, default_value.to_upper)
+    end
     
     def self.configure_game
       
@@ -170,6 +174,110 @@ module AresMUSH
      
       puts "\nYour game has been configured!  You can edit these and other game options through the files in game/config."
       
+    end
+
+    def self.configure_game_from_env
+      engine_api_key = SecureRandom.uuid
+      
+      template_path = File.join(File.dirname(__FILE__), 'templates')
+      puts "\nConfiguring game from environment."
+      puts "\nLet's set up your database.  The default options should suffice unless you've done something unusual with your Redis installation."
+
+      db_url = get_field_from_env 'REDIS_URL', '127.0.0.1:6379'
+      
+      template_data =
+      {
+        "db_url" => db_url,
+      }
+  
+      template = Erubis::Eruby.new(File.read(File.join(template_path, 'database.yml.erb'), :encoding => "UTF-8"))
+      File.open(File.join(AresMUSH.game_path, 'config', 'database.yml'), 'w') do |f|
+        f.write(template.evaluate(template_data))
+      end
+      
+      if (File.exists?(File.join(AresMUSH.game_path, "config", "secrets.yml")))
+        db_password = nil
+      else
+        db_password = get_field_from_env 'DB_PASSWORD', ('a'..'z').to_a.shuffle[0,30].join
+        template_data =
+        {
+          "engine_api_key" => engine_api_key,
+          "db_password" => db_password
+        }
+        
+        template = Erubis::Eruby.new(File.read(File.join(template_path, 'secrets.yml.erb'), :encoding => "UTF-8"))
+        File.open(File.join(AresMUSH.game_path, 'config', 'secrets.yml'), 'w') do |f|
+          f.write(template.evaluate(template_data))
+        end
+      end
+      
+    
+  
+      server_host = get_field_from_env 'SERVER_HOST_NAME', '127.0.0.1'
+      server_port = get_field_from_env 'SERVER_HOST_PORT', "4201"
+      websocket_port = get_field_from_env 'SERVER_WEBSOCKET_PORT', "4202"
+      engine_api_port = get_field_from_env 'SERVER_API_PORT', "4203"
+      web_portal_port = get_field_from_env 'SERVER_WEB_PORT', "80"
+
+      mush_name = get_field_from_env 'GAME_NAME', ''
+      game_desc = get_field_from_env 'GAME_DESCRIPTION', ''
+      website = get_field_from_env 'GAME_WEBSITE', ''
+      category = get_field_from_env 'GAME_CATEGORY', 'Other'    
+            
+      template_data = 
+      {
+        "host_name" => server_host,
+        "host_port" => server_port,
+        "websocket_port" => websocket_port,
+        "web_portal_port" => web_portal_port,
+        "engine_api_port" => engine_api_port,
+        "mush_name" => mush_name,
+        "category" => category,
+        "game_desc" => game_desc,
+        "website" => website,
+        "public_game" => false,
+        "game_status" => 'In Development'
+      }
+  
+      template = Erubis::Eruby.new(File.read(File.join(template_path, 'server.yml.erb'), :encoding => "UTF-8"))
+      File.open(File.join(AresMUSH.game_path, 'config', 'server.yml'), 'w') do |f|
+        f.write(template.evaluate(template_data))
+      end
+      
+      template = Erubis::Eruby.new(File.read(File.join(template_path, 'game.yml.erb'), :encoding => "UTF-8"))
+      File.open(File.join(AresMUSH.game_path, 'config', 'game.yml'), 'w') do |f|
+        f.write(template.evaluate(template_data))
+      end
+      
+      template = Erubis::Eruby.new(File.read(File.join(template_path, 'nginx.erb'), :encoding => "UTF-8"))
+      File.open(File.join(AresMUSH.root_path, 'install', 'nginx.default'), 'w') do |f|
+        f.write(template.evaluate(template_data))
+      end
+            
+      begin
+        webportal_dir = DatabaseMigrator.read_config_file("website.yml")['website']['website_code_path']
+        if (webportal_dir && Dir.exist?(webportal_dir))
+          if (web_portal_port.to_s == '80')
+            port_str = ""
+          else
+            port_str = ":#{web_portal_port}"
+          end
+        
+          File.open(File.join(webportal_dir, "public", "robots.txt"), "a") do |f| 
+            f.write("\nSitemap: #{server_host}#{port_str}/game/sitemap.xml")
+          end
+        else
+          raise "Directory doesn't exist."
+        end
+      rescue Exception => ex
+        puts "!!!!!!!"
+        puts "Your Ares web portal directory can't be found, or there's a problem accessing it."
+        puts "In order to set up your search engine, you'll need to manually edit the robots file."
+        puts "See https://aresmush.com/tutorials/config/website/ for details."
+        puts "!!!!!!!"
+      end
+     
+      puts "\nYour game has been configured!  You can edit these and other game options through the files in game/config."      
     end
   end
 end
