@@ -13,6 +13,9 @@ module AresMUSH
       }
 
       host = Global.read_config("server", "hostname")
+      if ( !Global.read_config("server","bind_address").nil? )
+        host = Global.read_config("server","bind_address")
+      end
       
       EventMachine::run do
         port = Global.read_config("server", "port")
