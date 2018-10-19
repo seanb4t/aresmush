@@ -1,0 +1,45 @@
+version: "3.7"
+services:
+  redis:
+    image: redis:latest
+    command: redis-server /etc/redis.conf
+    configs:
+    - source: redis
+      target: /etc/redis.conf
+      mode: 0444
+    volumes:
+    - redis_data:/data
+  nginx:
+    image: nginx:latest
+    configs:
+    - source: nginx
+      target: /etc/nginx/nginx.conf
+      mode: 0444    
+    volumes:
+    - nginx_webroot:/usr/share/nginx/html:ro
+    ports:
+    - 8080:80
+  ares:
+    image: aresmush:latest
+    environment: 
+      REDIS_URL: redis:6379
+
+    depends_on:
+      - redis
+      - nginx
+    volumes:
+    - nginx_webroot:/var/www/html:rw
+    - redis_data:/var/lib/redis:rw
+    - aresmush_game:/ares/aresmush/game:rw
+
+volumes:
+  redis_data:
+  nginx_webroot:
+  aresmush_game:
+configs:
+  redis:
+    file: ./redis.conf
+  nginx:
+    file: ./nginx.conf
+  
+    

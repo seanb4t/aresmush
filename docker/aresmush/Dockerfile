@@ -91,6 +91,9 @@ ENV ARES_GAME_GIT_URL=${ARES_GAME_GIT_URL}
 ARG ARES_GAME_BRANCH=master
 ENV ARES_GAME_BRANCH=${ARES_GAME_BRANCH}
 ENV ARES_GAME_DIR=/ares/aresmush
+ENV ARES_WEBPORTAL_DIR=/ares/ares-webportal
+ENV ARES_WEBPORTAL_GIT_URL=https://github.com/AresMUSH/ares-webportal.git
+ENV ARES_WEBPORTAL_BRANCH=master
 
 COPY --chown=ares:ares ares-setup.sh /ares/ares-setup.sh
 
