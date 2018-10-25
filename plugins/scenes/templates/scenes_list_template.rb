@@ -48,6 +48,10 @@ module AresMUSH
         scene.temp_room ? t('scenes.temproom_scene') : t('scenes.grid_scene')
       end
       
+      def last_activity(scene)
+        OOCTime.local_long_timestr(self.enactor, scene.last_activity)
+      end
+      
       def privacy(scene)
         color = scene.private_scene ? "%xr" : "%xg"
         message = scene.private_scene ? t('scenes.private') : t('scenes.open')
