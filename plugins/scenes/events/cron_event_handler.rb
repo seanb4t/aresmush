@@ -29,7 +29,6 @@ module AresMUSH
 
         rooms.each do |r|
           if (r.clients.empty?)
-            Global.logger.debug "Checking room #{r.name} -- #{r.scene ? r.scene.id : 'No scene'}"
             if (r.scene_set)
               r.update(scene_set: nil)
             end
