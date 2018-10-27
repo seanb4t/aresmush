@@ -1,2 +1,7 @@
+#!/bin/bash
+set -e
+script=$1
+shift
+script_args="${*}"
 bundle install
-bundle exec rake script[$*]
+exec bundle exec rake "script[$script,$script_args]"
