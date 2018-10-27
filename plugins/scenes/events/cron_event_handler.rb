@@ -8,6 +8,7 @@ module AresMUSH
           Global.logger.debug "Empty scene cleanup."
           clear_rooms
           clear_watchers
+          Global.logger.debug "Scene cleanup cron complete."
         end
         
         if (Global.read_config("scenes", "delete_unshared_scenes"))
