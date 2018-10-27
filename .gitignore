@@ -41,3 +41,7 @@ killares
 /game/logs
 /game/config/secrets.yml
 
+# RubyMine/Intellij
+# -----------------------------
+.idea/
+
