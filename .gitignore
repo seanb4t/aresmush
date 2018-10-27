@@ -38,4 +38,6 @@ killares
 
 # Game directory
 # -----------------------------
-/game/
+/game/logs
+/game/config/secrets.yml
+

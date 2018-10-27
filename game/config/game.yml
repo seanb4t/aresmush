@@ -1,0 +1,9 @@
+---
+game: !ruby/hash:Sinatra::IndifferentHash
+  name: AoS-Dev
+  category: Modern
+  description: Agents of Shield ( Dev )
+  website: dev.aos.muxserver.net
+  public_game: false
+  game_status: In Development
+  status: In Development
