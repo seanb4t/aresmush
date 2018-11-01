@@ -8,7 +8,6 @@ channels:
   default_channels:
   - Questions
   - Public
-  - RP Requests
   end_marker: "]"
   shortcuts:
     chan: channel
