@@ -25,3 +25,5 @@ channels:
     comtitle: channel/title
     channel/name: channel/rename
   start_marker: "["
+  approved_channels:
+  - RP Requests
