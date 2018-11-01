@@ -1,0 +1,15 @@
+---
+cypher:
+  skills:
+    might:
+    - Hand to Hand
+    - Weight Lifting
+    speed:
+    - Archery
+    - Driving
+    - Handguns
+    - Initiative
+    intellect:
+    - Engineering
+    - Lying
+    - Math

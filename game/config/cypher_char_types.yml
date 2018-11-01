@@ -1,0 +1,25 @@
+---
+cypher:
+  character:
+    types:
+    - name: Soldier
+      description: You're trained to fight.
+      starting_stat_pools:
+        might: 10
+        speed: 10
+        intellect: 8
+      additional_pool_points: 6
+    - name: Scientist
+      description: You understand how the world works. You want to understand more.
+      starting_stat_pools:
+        might: 7
+        speed: 9
+        intellect: 12
+      additional_pool_points: 6
+    - name: Scholar
+      description: Knowledge is power, as they say, and more knowledge - is more power.
+      starting_stat_pools:
+        might: 9
+        speed: 9
+        intellect: 10
+      additional_pool_points: 6

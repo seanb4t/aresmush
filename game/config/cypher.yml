@@ -1,0 +1,12 @@
+---
+cypher:
+  attributes:
+    - name: Might
+      description: Strength and Durability
+    - name: Speed
+      description: Physical Coordination, Agility, Stealth
+    - name: Intellect
+      description: Smarts, Charisma, Wit, Willpower
+  shortcuts: {}
+
+

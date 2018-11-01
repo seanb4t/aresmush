@@ -1,0 +1,7 @@
+---
+cypher:
+  character:
+    flavors:
+    - name: Stealth
+    - name: Magic
+    - name: Skills and Knowledge
