@@ -8,7 +8,6 @@ channels:
   default_channels:
   - Questions
   - Public
-  - RP Requests
   end_marker: "]"
   shortcuts:
     chan: channel
@@ -26,3 +25,5 @@ channels:
     comtitle: channel/title
     channel/name: channel/rename
   start_marker: "["
+  approved_channels:
+  - RP Requests
