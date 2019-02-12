@@ -1,3 +1,7 @@
 ---
 en:
-  cypher: {}
+  cypher:
+    descriptors_title: Descriptors
+    descriptor_title: Descriptor
+    skills_title: Skills
+    skill_title: Skill

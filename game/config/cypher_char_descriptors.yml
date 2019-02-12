@@ -2,14 +2,16 @@
 cypher:
   descriptors:
   - name: Appealing
-    description:
+    description: You are 'hot'
+    full_description: Some really long detailed explanation
     effects:
       pool_mods:
         intellect: 2
       trained_skills: []
       inabilities: []
   - name: Brash
-    description:
+    description: You act before thinking
+    full_description: Some really long detailed explanation
     effects:
       pool_mods:
         speed: 2

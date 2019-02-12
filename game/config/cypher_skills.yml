@@ -1,15 +1,23 @@
 ---
 cypher:
   skills:
-    might:
-    - Hand to Hand
-    - Weight Lifting
-    speed:
-    - Archery
-    - Driving
-    - Handguns
-    - Initiative
-    intellect:
-    - Engineering
-    - Lying
-    - Math
+    - name: Hand to Hand
+      description: Hand to hand combat
+      type: might
+    - name: Weight Lifting
+      description: Training in proper lifting of weights
+      type: might
+    - name: Archery
+      type: speed
+    - name: Driving
+      type: speed
+    - name: Handguns
+      type: speed
+    - name: Initiative
+      type: speed
+    - name: Engineering
+      type: intellect
+    - name: Lying
+      type: intellect
+    - name: Math
+      type: intellect

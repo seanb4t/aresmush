@@ -1,0 +1,11 @@
+<%= header %>
+%xh<%= t('cypher.descriptors_title') %>%xn
+<%= divider %>
+  %x11<%=left('Name', 27)%>%xn - %x11Description%xn
+<%= divider %>
+<% paginator.page_items.each do |p| %>
+  <%= left(p['name'], 27) -%>
+ - <%= p['description'] %>
+<% end %>
+<%= paginator.page_footer %>
+<%= footer %>

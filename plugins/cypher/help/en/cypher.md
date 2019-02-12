@@ -11,4 +11,5 @@ on works done in the Cypher books and original intellectual property of Monte Co
 
 All players of this game are encouraged to purchase a copy of the game, in PDF or hardback, from Monte Cook Games.
 
-[Cypher Systems Rulebook](https://www.montecookgames.com/store/product/cypher-system-rulebook/)
+* [Cypher Systems Rulebook](https://www.montecookgames.com/store/product/cypher-system-rulebook/)
+

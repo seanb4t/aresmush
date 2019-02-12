@@ -1,11 +1,11 @@
----
 server:
-  hostname: dev.aos.muxserver.net
-  bind_address: '0.0.0.0'
-  port: 4201
-  websocket_port: 4202
-  web_portal_port: 80
-  engine_api_port: 4203
-  private_key_file_path: '/home/ares/ssl/privkey.pem'
-  certificate_file_path: '/home/ares/ssl/fullchain.pem'
-  use_https: true
+    hostname: iridium
+    bind_address: '0.0.0.0'
+
+    port: 5201
+    
+    websocket_port: 5202
+
+    web_portal_port: 5280
+    
+    engine_api_port: 5203
