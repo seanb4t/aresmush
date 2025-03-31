@@ -1,5 +1,7 @@
+#!/usr/bin/env bash
+
 if [[ $EUID == 0 ]]; then
-   echo "This script should not be run as root.  Log out and log back in with your ares user." 
+   echo "This script should not be run as root.  Log out and log back in with your ares user."
    exit 1
 fi
 
@@ -17,7 +19,8 @@ nohup bundle exec rake startares[$*] > /dev/null 2>errors.txt&
 export ARES_PID=$!
 
 echo "Creating kill script."
-echo kill -9 ${ARES_PID}  > bin/killares
+echo "#!/usr/bin/env bash" > bin/killares
+echo "exec kill -9 ${ARES_PID}"  >> bin/killares
 chmod +x bin/killares
 
 echo "Deploying website."
